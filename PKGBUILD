@@ -11,7 +11,6 @@ depends=('gmp')
 license=('MIT')
 options=('!libtool')
 provides=("isl=${pkgver}")
-conflicts=('isl-git' 'isl')
 source=('http://isl.gforge.inria.fr/isl-0.10.tar.bz2')
 md5sums=('c1ece653891bb2a5f55ca25e3f4e8f35')
 
@@ -33,4 +32,8 @@ package() {
 
   install -dm755 "$pkgdir"/usr/share/gdb/auto-load/usr/lib/
   mv "$pkgdir"/usr/lib/libisl.so.*-gdb.py "$pkgdir"/usr/share/gdb/auto-load/usr/lib/
+
+  rm "$pkgdir"/usr/lib/libisl.so
+  rm -fr "$pkgdir"/usr/include
+  mv "$pkgdir"/usr/lib/pkgconfig/isl{,10}.pc
 }
